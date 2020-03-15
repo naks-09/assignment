@@ -17,7 +17,7 @@ constructor(
     while (true) {
       try {
         receiveChannel.receive()
-//          .also { println("Consuming video: $it") }
+          .also { println("Consuming video: $it") }
           .let { persistVideos.invoke(it) }
       } catch (e: Exception) {
         break
