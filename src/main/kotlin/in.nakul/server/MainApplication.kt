@@ -13,20 +13,19 @@ import io.ktor.http.HttpStatusCode
 import io.ktor.response.respond
 import io.ktor.routing.get
 import io.ktor.routing.routing
+import kotlinx.coroutines.launch
 
 fun Application.main() {
 
-//  BackgroundJobRunner().invoke()
+  launch { BackgroundJobRunner().invoke() }
   install(ContentNegotiation) {
     gson { }
   }
-
   routing {
-    get("getPage") {
+    get("getPage/{pageToken}") {
       try {
-        call.request.queryParameters["pageToken"]
+        call.parameters["pageToken"]
           ?.let { it.toInt() } ?: 0
-          .also { println("\n\n\n $it \n\n\n") }
           .let { GetPageRequest(it) }
           .let { ServeGetPageRequest(Gson()).invoke(it) }
           .let { call.respond(HttpStatusCode.OK, it) }
