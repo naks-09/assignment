@@ -24,8 +24,7 @@ fun Application.main() {
   routing {
     get("getPage/{pageToken}") {
       try {
-        call.parameters["pageToken"]
-          ?.let { it.toInt() } ?: 0
+        (call.parameters["pageToken"]?.let { it.toInt() } ?: 0)
           .let { GetPageRequest(it) }
           .let { ServeGetPageRequest(Gson()).invoke(it) }
           .let { call.respond(HttpStatusCode.OK, it) }

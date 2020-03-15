@@ -33,7 +33,9 @@ constructor(
       )
         .let { videos.add(it) }
       nextPageToken = max(nextPageToken, rs.getInt(1))
+      println(rs.getInt(1))
     }
+    println("\n\n\n")
     return GetPageResponse(nextPageToken, videos)
   }
 
