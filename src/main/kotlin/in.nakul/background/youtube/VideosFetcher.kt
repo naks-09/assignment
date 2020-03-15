@@ -16,7 +16,7 @@ constructor() {
     private const val REL_PATH = "search"
     private const val SEARCH_KEY = "cricket"
     private const val DATE_AFTER = "2020-03-14T00:00:00Z"
-    private const val API_KEY = "AIzaSyBiVpZMvQXOE8QShPTl67So4U_xBmjQny8"
+    private const val API_KEY = "AIzaSyA94jjVOlkPl0VwQAQF2Guk6dCftZwsIn4"
   }
 
   suspend fun makeCall(pageToken: String? = null) =

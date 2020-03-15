@@ -1,6 +1,7 @@
 package `in`.nakul.background.data
 
 import `in`.nakul.background.entities.Video
+import com.google.gson.Gson
 import java.sql.Connection
 
 class PersistVideos
@@ -13,7 +14,7 @@ constructor(
       .apply {
         setString(1, video.title)
         setString(2, video.description)
-        setString(3, video.thumbnails.toString())
+        setString(3, Gson().toJson(video.thumbnails))
         setString(4, video.publishedAt)
       }
       .execute()

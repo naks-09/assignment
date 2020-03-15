@@ -8,6 +8,10 @@ object Libs {
     const val ktorClientOkhttp = "$ktorGroup:ktor-client-okhttp:$ktorVersion"
     const val ktorClientGson = "$ktorGroup:ktor-client-gson:$ktorVersion"
 
+    const val ktorServerCore = "$ktorGroup:ktor-server-core:$ktorVersion"
+    const val ktorNetty = "$ktorGroup:ktor-server-netty:$ktorVersion"
+    const val ktorServerGson =  "$ktorGroup:ktor-gson:$ktorVersion"
+
     private const val postgresqlGroup = "org.postgresql"
     private const val postgresqlVersion = "42.2.11.jre7"
     const val postgresql = "$postgresqlGroup:postgresql:$postgresqlVersion"
