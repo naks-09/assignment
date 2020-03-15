@@ -7,7 +7,7 @@ import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.produce
 import kotlinx.coroutines.delay
 
-suspend fun CoroutineScope.videosProducer(): ReceiveChannel<Video> = produce {
+suspend fun CoroutineScope.videosProducer(): ReceiveChannel<Video> = produce(capacity = Channel.UNLIMITED) {
   var nextPageToken: String? = null
   val videosFetcher = VideosFetcher()
   while (true) {
@@ -18,6 +18,6 @@ suspend fun CoroutineScope.videosProducer(): ReceiveChannel<Video> = produce {
       .also { it.items.onEach { offer(it.snippet) } }
       .nextPageToken
       ?: this.close()
-//    delay(1000)
+    delay(1000)
   }
 }
