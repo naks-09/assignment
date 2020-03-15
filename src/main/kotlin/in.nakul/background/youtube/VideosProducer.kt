@@ -11,11 +11,11 @@ suspend fun CoroutineScope.videosProducer(): ReceiveChannel<Video> = produce(cap
   var nextPageToken: String? = null
   val videosFetcher = VideosFetcher()
   while (true) {
-    println("starting")
     videosFetcher.makeCall(nextPageToken)
       .also { nextPageToken = it.nextPageToken }
-      .also { println("Producing youtube response ${it.nextPageToken}  \t  ${it.items}") }
+//      .also { println("Producing youtube response ${it.nextPageToken}  \t  ${it.items}") }
       .also { it.items.sortedByDescending { it.snippet.publishedAt }.onEach { send(it.snippet) } }
+      .also { it.items.onEach { println(it.snippet.publishedAt) } }
       .nextPageToken
       ?: this.close()
     delay(1000)
